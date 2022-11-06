@@ -1,5 +1,7 @@
 <?php
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $uploadDir = 'public/uploads/';
@@ -39,6 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </head>
 
 <body>
+
+    <ul>
+        <?php foreach ($errors as $error) : ?>
+            <li><?= $error; ?></li>
+        <?php endforeach ?>
+    </ul>
     <form method="post" enctype="multipart/form-data">
         <label for="firstname">firstname :</label>
         <input type="text" name="firstname" id="firstname" />
@@ -48,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         <label for="age">Age :</label>
         <input type="number" name="age" id="age" min="1" max="150" />
-
 
         <label for="imageUpload">Upload an profile image</label>
         <input type="file" name="avatar" id="imageUpload" />
